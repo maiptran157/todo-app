@@ -1,11 +1,12 @@
 import 'materialize-css/dist/css/materialize.min.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 // import axios from 'axios';
 import AddItem from './add_item';
 import List from './list';
 // import dummyListData from '../dummy_data/list_data';
-
+import Details from './details';
+import NotFound from './not_found';
 
 // const BASE_URL = 'http://api.reactprototypes.com';
 // const API_KEY = '?key=c718_miatran';
@@ -19,18 +20,21 @@ class App extends Component {
         return (
 
             <div className="container">
-
-                <Route path="/" exact component={List}
-                // render={(routingInfo) => {
-                //     // console.log("routing info:", routingInfo);
-                //     return <List {...routingInfo} error={error} data={list} delete={this.deleteItem} />
-                // }}
-                />
-                <Route path="/add-item" component={AddItem}
-                // render={props => {
-                //     return <AddItem {...props} add={this.addItem} />
-                // }} 
-                />
+                <Switch>
+                    <Route path="/" exact component={List}
+                    // render={(routingInfo) => {
+                    //     // console.log("routing info:", routingInfo);
+                    //     return <List {...routingInfo} error={error} data={list} delete={this.deleteItem} />
+                    // }}
+                    />
+                    <Route path="/add-item" component={AddItem}
+                    // render={props => {
+                    //     return <AddItem {...props} add={this.addItem} />
+                    // }} 
+                    />
+                    <Route path="/item/:itemId" component={Details} />
+                    <Route path="/" component={NotFound} />
+                </Switch>
             </div>
         );
     }
